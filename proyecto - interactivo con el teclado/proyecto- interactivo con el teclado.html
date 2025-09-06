@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Key Codes</title>
+    
+  </head>
+  <style>
+    body{
+background-color: rgb(2, 59, 163);
+text-align: center;
+background-image: url(disney.jpeg);
+    }
+    canvas{
+      background-color: rgb(6, 53, 140);
+    }
+    aside:nth-of-type(2) {
+  color: white;
+}
+  </style>
+  <body>
+    <aside>Open debugging console in web browser and press arrow key.</aside>
+    <aside>"Press the keys "A, C, H, N or P"</aside>
+    <canvas id="canvas" width="800" height="600"></canvas>
+
+      <script src="Keycodes.js"></script>
+    <script>
+    window.onload = function () {
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    context.font = '24pt Times';
+    context.fillStyle = 'white';
+    context.fontweight = 'italic'; 
+    context.textAlign = 'center';
+    
+    
+
+   
+   
+
+      function onKeyboardEvent (event) {
+        switch (event.keyCode) {
+        case keycode.LETRA_A:
+          console.log("up!");
+          context.clearRect(0,0, innerWidth, innerHeight);
+          context.drawImage(imagen, 50, 75, 700, 450);
+          context.fillText('Letra A', 400, 58);
+          context.font = '24pt Times';
+          context.fillStyle = 'white';
+          context.fontweight = 'italic';
+          context.textAlign = 'center';
+          context.fillText('Press A, C, H, N or P', 400, 570);
+          break;
+        case keycode.LETRA_C:
+          console.log("down!");
+           context.clearRect(0,0, innerWidth, innerHeight);
+          context.drawImage(imagen2, 50, 75, 700, 450);
+          context.fillText('Letra C', 400, 58);
+          context.font = '24pt Times';
+          context.fillStyle = 'white';
+          context.fontweight = 'italic';
+          context.textAlign = 'center';
+          context.fillText('Press A, C, H, N or P', 400, 570);
+          break;
+        case keycode.LETRA_H:
+          console.log("left!");
+          context.clearRect(0,0, innerWidth, innerHeight);
+          context.drawImage(imagen3, 50, 75, 700, 450);
+          context.fillText('Letra H', 400, 58);
+          context.font = '24pt Times';
+          context.fillStyle = 'white';
+          context.fontweight = 'italic';
+          context.textAlign = 'center';
+          context.fillText('Press A, C, H, N or P', 400, 570);
+          break;
+        case keycode.LETRA_N:
+          console.log("right!");
+          context.clearRect(0,0, innerWidth, innerHeight);
+          context.drawImage(imagen4, 50, 75, 700, 450);
+          context.fillText('Letra N', 400, 58);
+          context.font = '24pt Times';
+          context.fillStyle = 'white';
+          context.fontweight = 'italic';
+          context.textAlign = 'center';
+          context.fillText('Press A, C, H, N or P', 400, 570);
+          break;
+        case keycode.LETRA_P:
+          console.log("up!");
+          context.clearRect(0,0, innerWidth, innerHeight);
+          context.drawImage(imagen5, 50, 75, 700, 450);
+          context.fillText('Letra P', 400, 58);
+          context.font = '24pt Times';
+          context.fillStyle = 'white';
+          context.fontweight = 'italic';
+          context.textAlign = 'center';
+          context.fillText('Press A, C, H, N or P', 400, 570);
+        default:
+          console.log(event.keyCode);
+        }
+      }
+ var imagen = new Image();
+    imagen.src = "Aladdin.jpeg";
+    imagen.onLoad = function(){
+    context.drawImage(imagen, 50, 75, 700, 450);
+    }
+    var imagen2 = new Image();
+    imagen2.src = "Cenicienta.jpeg";
+    imagen2.onLoad = function(){
+    context.drawImage(imagen2, 50, 75, 700, 450);
+    }
+    var imagen3 = new Image();
+    imagen3.src = "Hercules.jpeg";
+    imagen3.onLoad = function(){
+    context.drawImage(imagen3, 50, 75, 700, 450);
+    }
+    var imagen4 = new Image();
+    imagen4.src = "Nemo.jpeg";
+    imagen4.onLoad = function(){
+    context.drawImage(imagen4, 50, 75, 700, 450);
+    }
+    var imagen5 = new Image();
+    imagen5.src = "Pocahontas.jpeg";
+    imagen5.onLoad = function(){
+    context.drawImage(imagen5, 50, 75, 700, 450);
+    }
+   
+      window.addEventListener('keydown', onKeyboardEvent, false);
+    };
+    </script>
+  </body>
+</html>
