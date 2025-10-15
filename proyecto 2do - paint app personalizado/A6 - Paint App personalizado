@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Paint</title>
+<style>
+  body {
+    text-align: center;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+  }
+  canvas {
+    border: 2px solid black;
+    background-color: white;
+    cursor: crosshair;
+  }
+  .controls {
+    margin: 15px;
+  }
+  button, .color-btn {
+    margin: 5px;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  .color-btn {
+    width: 30px;
+    height: 30px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🎨 Mini Paint</h1>
+
+<div class="controls">
+  <button class="color-btn" style="background-color: red;" onclick="setColor('red')"></button>
+  <button class="color-btn" style="background-color: blue;" onclick="setColor('blue')"></button>
+  <button class="color-btn" style="background-color: green;" onclick="setColor('green')"></button>
+  <button class="color-btn" style="background-color: orange;" onclick="setColor('orange')"></button>
+  <button class="color-btn" style="background-color: purple;" onclick="setColor('purple')"></button>
+  <br><br>
+  <button onclick="setLineWidth(2)">Fino</button>
+  <button onclick="setLineWidth(5)">Medio</button>
+  <button onclick="setLineWidth(10)">Grueso</button>
+  <br><br>
+  <button onclick="clearCanvas()" style="background-color: #ff4444; color: white;">🧹 Borrar todo</button>
+</div>
+
+<canvas id="paintCanvas" width="700" height="400"></canvas>
+
+<script>
+  const canvas = document.getElementById('paintCanvas');
+  const ctx = canvas.getContext('2d');
+  
+  let painting = false;
+  let color = 'black';
+  let lineWidth = 2;
+
+  function startPosition(e) {
+    painting = true;
+    draw(e);
+  }
+
+  function endPosition() {
+    painting = false;
+    ctx.beginPath();
+  }
+
+  function draw(e) {
+    if (!painting) return;
+
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = color;
+
+    const rect = canvas.getBoundingClientRect();
+    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+  }
+
+  function setColor(newColor) {
+    color = newColor;
+  }
+
+  function setLineWidth(width) {
+    lineWidth = width;
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('mousedown', startPosition);
+  canvas.addEventListener('mouseup', endPosition);
+  canvas.addEventListener('mousemove', draw);
+</script>
+
+</body>
+</html>
